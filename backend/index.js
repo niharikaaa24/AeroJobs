@@ -20,7 +20,7 @@ app.get("/home", (req,res)=>{
     })
 })
 const corsOptions = {
-    origin:'http://localhost:5173',
+    origin:'https://aerojobs-4.onrender.com',
     credentials:true
 }
 
