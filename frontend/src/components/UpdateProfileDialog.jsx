@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle , DialogDescription} from './ui/dialog'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
@@ -10,6 +10,7 @@ import { USER_API_END_POINT } from '@/utils/constant'
 import { setUser } from '@/redux/authSlice'
 import { toast } from 'sonner'
 import store from '@/redux/store'
+
 
 const UpdateProfileDialog= ({open, setOpen}) =>{
 
@@ -48,25 +49,28 @@ const UpdateProfileDialog= ({open, setOpen}) =>{
         }
         try {
             setLoading(true);
+            console.log("🔄 Sending API Request...");
             const res = await axios.post(`${USER_API_END_POINT}/profile/update`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
+                headers: { 'Content-Type': 'multipart/form-data' },
                 withCredentials: true
             });
+            console.log("Response:", res.data);
             if (res.data.success) {
                 dispatch(setUser(res.data.user));
                 toast.success(res.data.message);
+                setOpen(false);
             }
         } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
+            console.error("Error:", error.response?.data || error);
+            toast.error(error.response?.data?.message || "Something went wrong");
         } 
         finally{
+            console.log("Setting loading to false and closing dialog");
             setLoading(false);
+           
         }
-        setOpen(false);
-        console.log(input); 
+        
+        
     }
     return (
         <div>
@@ -74,14 +78,15 @@ const UpdateProfileDialog= ({open, setOpen}) =>{
                 <DialogContent className="sm:max-w-[425px]" onInteractOutside={()=>setOpen(false)} >
                     <DialogHeader>
                         <DialogTitle>Update Profile</DialogTitle>
+                        <DialogDescription className="sr-only">.</DialogDescription>
                     </DialogHeader>
                     <form onSubmit={submitHandler}>
                         <div className='grid gap-4 py-4'>
                             <div className='grid grid-cols-4 items-center gap-4'>
                                 <Label htmlFor="name" className="text-right">Name</Label>
                                 <Input
-                                    id="name"
-                                    name="name"
+                                    id="fullname"
+                                    name="fullname"
                                     type="text"
                                     value={input.fullname}
                                     onChange={changeEventHandler}
@@ -102,8 +107,8 @@ const UpdateProfileDialog= ({open, setOpen}) =>{
                             <div className='grid grid-cols-4 items-center gap-4'>
                                 <Label htmlFor="number" className="text-right">Number</Label>
                                 <Input
-                                    id="number"
-                                    name="number"
+                                    id="phoneNumber"
+                                    name="phoneNumber"
                                     value={input.phoneNumber}
                                     onChange={changeEventHandler}
                                     className="col-span-3"

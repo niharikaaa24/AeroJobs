@@ -13,10 +13,6 @@ const filterdata=[
     {
         filterType: "Industry",
         array: ["Pilot", "Cabin-Crew", "Navigation Engineer", "Air-Hostess"]
-    },
-    {
-        filterType: "Salary",
-        array: [ "under 10 lakh", "10 lakh to 24 lakhs", "24 lakhs to 36 lakhs"]
     }
 ]
 function FilterCard() {

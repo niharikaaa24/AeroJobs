@@ -1,40 +1,62 @@
-import React, { useState } from 'react'
-import { Button } from './ui/button'
-import { Search } from 'lucide-react'
-import { useDispatch } from 'react-redux';
-import { setSearchedQuery } from '@/redux/jobSlice';
-import { useNavigate } from 'react-router-dom';
+
+import React, { useState } from "react";
+import { Button } from "./ui/button";
+import { Search } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { setSearchedQuery } from "@/redux/jobSlice";
+import { useNavigate } from "react-router-dom";
 
 function HeroSection() {
-    const [query, setQuery]= useState("");
-    const dispatch= useDispatch();
-    const navigate= useNavigate();
-    const searchJobHandler= ()=>{
-        dispatch(setSearchedQuery(query));
-        navigate("/browse");
-    }   
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const searchJobHandler = () => {
+    dispatch(setSearchedQuery(query));
+    navigate("/browse");
+  };
 
   return (
-    <div className='text-center'>
-    <div className='flex flex-col gap-5 my-10'>
-        <span className=' mx-auto px-4 py-2 rounded-full bg-gray-100 text-[#F83002] font-medium'>No. 1 Aero Jobs Website</span>
-        <h1 className='text-5xl font-bold'>Find your wings  <br /> in the  <span className='text-[#6A38C2]'>Airline</span> Industry </h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid aspernatur temporibus nihil tempora dolor!</p>
-        <div className='flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto'>
-            <input
-                type="text"
-                placeholder='Find your dream jobs'
-               onChange={(e)=> setQuery(e.target.value)}
-                className='outline-none border-none w-full'
+    <div className="relative bg-black text-white py-16 px-5">
+      <div className="text-center max-w-3xl mx-auto">
+        {/* Badge */}
+        <span className="inline-block px-5 py-2 rounded-full bg-purple-700 text-white font-semibold shadow-md">
+          ✈️ No. 1 Aero Jobs Website
+        </span>
 
-            />
-            <Button onClick={searchJobHandler} className="rounded-r-full bg-[#6A38C2]">
-                <Search className='h-5 w-5' />
-            </Button>
+        {/* Title */}
+        <h1 className="text-6xl font-extrabold mt-6 leading-tight">
+          Find your <span className="text-purple-500 drop-shadow-lg">Wings</span> <br /> 
+          in the <span className="text-[#8A2BE2]">Airline</span> Industry
+        </h1>
+
+        {/* Subtitle */}
+        <p className="mt-4 text-lg text-gray-400">
+          Take Your Career to New Heights – Explore Exclusive Airline & Aviation Jobs Today!
+        </p>
+
+        {/* Search Box */}
+        <div className="flex w-full max-w-lg bg-[#181818] shadow-xl border border-gray-700 rounded-full mt-8 mx-auto overflow-hidden">
+          <input
+            type="text"
+            placeholder="Find your dream job..."
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full px-5 py-3 text-white bg-transparent outline-none focus:ring-2 focus:ring-purple-500"
+          />
+          <Button
+            onClick={searchJobHandler}
+            className="bg-purple-600 hover:bg-purple-700 transition-all rounded-r-full px-6"
+          >
+            <Search className="h-6 w-6 text-white" />
+          </Button>
         </div>
+
+        {/* Glowing Effect */}
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-900 via-black to-purple-900 opacity-20 blur-3xl"></div>
+      </div>
     </div>
-</div>
-  )
+  );
 }
 
 export default HeroSection
+
