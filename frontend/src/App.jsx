@@ -18,6 +18,7 @@ import CompaniesSetup from './components/admin/CompaniesSetup'
 import AdminJobs from './components/admin/AdminJobs'
 import PostJob from './components/admin/PostJob'
 import Applicants from './components/admin/Applicants'
+import Chatbot from './components/shared/Chatbot'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/admin/jobs/create" element={<PostJob/>}></Route>
             <Route path="/admin/jobs/:id/applicants" element={<Applicants/>}></Route>
         </Routes>
+      <Chatbot />
     </>
   )
 }

@@ -36,7 +36,7 @@ function HeroSection() {
         </p>
 
         {/* Search Box */}
-        <div className="flex w-full max-w-lg bg-[#181818] shadow-xl border border-gray-700 rounded-full mt-8 mx-auto overflow-hidden">
+        {/* <div className="flex w-full max-w-lg bg-[#181818] shadow-xl border border-gray-700 rounded-full mt-8 mx-auto overflow-hidden">
           <input
             type="text"
             placeholder="Find your dream job..."
@@ -49,7 +49,7 @@ function HeroSection() {
           >
             <Search className="h-6 w-6 text-white" />
           </Button>
-        </div>
+        </div> */}
 
         {/* Glowing Effect */}
         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-900 via-black to-purple-900 opacity-20 blur-3xl"></div>
